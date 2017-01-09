@@ -11,34 +11,24 @@
     <ion-row class="row" *ngFor="let row of tablesPerPlayer[numOfPlayers]" >
       <ion-col class="col" *ngFor="let col of row"
                [ngClass]="{green: col > (100 - range)}">
-        {{col}}
+        {{formatPercentage(col)}}
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-list>
-    <ion-list-header>
-      Range
-      <ion-badge item-right color="primary">{{range}}%</ion-badge>
-    </ion-list-header>
     <ion-item>
       <ion-range min="0" max="100" step="1"
                  color="primary"
                  [(ngModel)]="range">
-        <ion-label range-left>0%</ion-label>
-        <ion-label range-right>100%</ion-label>
+        <ion-label range-left>Range</ion-label>
+        <ion-label range-right>{{range}}%</ion-label>
       </ion-range>
     </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>
-      Number of Players
-      <ion-badge item-right color="primary">{{numOfPlayers}}</ion-badge>
-    </ion-list-header>
     <ion-item>
       <ion-range min="2" max="10" step="1" snaps="true" color="primary"
                  [(ngModel)]="numOfPlayers">
-        <ion-label range-left>2</ion-label>
-        <ion-label range-right>10</ion-label>
+        <ion-label range-left>Players</ion-label>
+        <ion-label range-right>{{numOfPlayers}}</ion-label>
       </ion-range>
     </ion-item>
   </ion-list>
