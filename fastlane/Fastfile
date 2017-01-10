@@ -1,0 +1,108 @@
+# A fastlane file, see https://fastlane.tools/ for reference
+
+# Update fastlane automatically if a new version is available:
+update_fastlane
+
+fastlane_version "1.106.2"
+
+ios_project_path = "platforms/ios/zholdemapp.xcodeproj"
+android_release_path = "releases/android-release.apk"
+
+private_lane :prepare do
+  if ENV["IONIC_ENV"] == "prod"
+    # sh("echo 'Incrementing Version for PROD release.'")
+    # sh("node scripts/increment_build_number.js")
+  end
+end
+
+# ===== iOS Private Lanes =====
+desc "Do a new iOS build using ionic."
+private_lane :ionic_ios_build do
+  sh("ionic build ios --release")
+end
+
+desc "Do a new iOS deploy using sigh and gym"
+private_lane :ios_deploy do
+  cert
+  sigh
+  gym(
+      scheme: "zholdem",
+      project: ios_project_path)
+end
+
+desc "Do a new iOS upload to iTunes Connect using deliver."
+private_lane :ios_upload do
+  deliver(force: true)
+end
+
+desc "Do a new Android build"
+private_lane :ionic_android_build do
+  sh("ionic build android --release")
+end
+
+# ===== Android Private Lanes =====
+desc "Do a new Android deploy using jarsigner and zipaliagn."
+private_lane :android_deploy do |options|
+  # require storepass to be specified
+  sh("cd .. && jarsigner -verbose " +
+         "-storepass #{options[:storepass]} " +
+         "-sigalg SHA1withRSA -digestalg SHA1 " +
+         "-keystore fastlane/release-cred/android.keystore " +
+         "platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")
+
+  sh("cd .. && ${HOME}/Library/Android/sdk/build-tools/23.0.3/zipalign -f " +
+         "-v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk " +
+         android_release_path)
+end
+
+desc "Do a new Android upload to Google Play Console using supply."
+private_lane :android_upload do
+  supply(
+      track: "alpha",
+      apk: android_release_path,
+      json_key: "fastlane/release-cred/google-play-release-manager-credentials.json",
+      package_name: "im.zzn.zholdemapp"
+  )
+end
+
+desc "Deploy a new version to the App Store/"
+private_lane :ios_publish do
+  ionic_ios_build
+  ios_deploy
+  ios_upload
+end
+
+desc "Deploy a new version to the Google Play Store."
+private_lane :android_publish do |options|
+  if options[:storepass].nil? || options[:storepass].empty?
+    sh("echo 'please specify storepass:<android keystore password>'")
+    exit
+  else
+    ionic_android_build
+    android_deploy(options)
+    android_upload
+  end
+end
+
+platform :ios do
+  desc "Deploy a new version to the App Store/"
+  lane :publish do
+    prepare
+    ios_publish
+  end
+end
+
+platform :android do
+  desc "Deploy a new version to the Google Play Store."
+  lane :deploy do |options|
+    prepare
+    android_publish(options)
+  end
+end
+
+desc "Deploy to all platforms."
+lane :publish_all do |options|
+  prepare
+  android_publish(options)
+  ios_publish
+end

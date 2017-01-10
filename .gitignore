@@ -32,3 +32,11 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+AppStore_im.zzn.zholdemapp.mobileprovision
+ZKYDXCMLL4.cer
+
+releases/
+zholdemapp.app.dSYM.zip
+zholdemapp.ipa
+fastlane/release-cred
