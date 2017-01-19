@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Hand Type Strength
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-range min="1" max="10" step="1" snaps="true" color="primary"
+                 [(ngModel)]="handType">
+        <ion-label range-left>Hand Type</ion-label>
+        <ion-label range-right>{{getHandTypeStr()}}</ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-range min="2" max="10" step="1" snaps="true" color="primary"
+                 [(ngModel)]="numOfPlayers" (ngModelChange)="onNumOfPlayersChange($event)">
+        <ion-label range-left>Players</ion-label>
+        <ion-label range-right>{{numOfPlayers}}</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <ion-grid *ngIf="loaded">
+    <ion-row>
+      <ion-col>Beats</ion-col>
+      <ion-col>Equity</ion-col>
+      <ion-col>Beaten By</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        {{ data[handType]['StrictlyBeatsRatio'].toFixed(2) * 100 }}%
+      </ion-col>
+      <ion-col>
+        {{ data[handType]['EquityRatio'].toFixed(2) * 100 }}%
+      </ion-col>
+      <ion-col>
+        {{ data[handType]['StrictlyBeatenByRatio'].toFixed(2) * 100 }}%
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

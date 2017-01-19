@@ -3,13 +3,14 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
+import {StrenthPage} from "../pages/strength/strength";
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = HomePage;
+  rootPage = StrenthPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

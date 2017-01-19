@@ -40,3 +40,5 @@ releases/
 zholdemapp.app.dSYM.zip
 zholdemapp.ipa
 fastlane/release-cred
+src/**/*.js
+src/**/*.js.map
