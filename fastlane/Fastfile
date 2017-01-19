@@ -26,7 +26,7 @@ private_lane :ios_deploy do
   cert
   sigh
   gym(
-      scheme: "zholdem",
+      scheme: "zholdemapp",
       project: ios_project_path)
 end
 
