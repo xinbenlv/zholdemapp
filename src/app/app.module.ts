@@ -2,13 +2,15 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {StrenthPage} from "../pages/strength/strength";
+import {TabsPage} from "../pages/tabs";
+import {StrengthPage} from "../pages/strength/strength";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    StrenthPage
+    StrengthPage,
+    TabsPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -17,7 +19,8 @@ import {StrenthPage} from "../pages/strength/strength";
   entryComponents: [
     MyApp,
     HomePage,
-    StrenthPage
+    StrengthPage,
+    TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

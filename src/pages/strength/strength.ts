@@ -7,7 +7,7 @@ import {HandType} from "../../app/lib/hand";
   selector: 'page-strength',
   templateUrl: 'strength.html'
 })
-export class StrenthPage implements OnInit {
+export class StrengthPage implements OnInit {
   public numOfPlayers:number = 2;
   public loaded = false;
   public handType:HandType = HandType.TwoPairs;
