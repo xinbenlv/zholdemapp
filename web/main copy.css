@@ -1,0 +1,117 @@
+header.w3-card{
+	background-color: #5F991B;
+	text-align: center;
+	color: #ffffff;
+	z-index: 1;
+}
+
+.content{
+    margin-top: 84px;
+}
+
+hr{
+	margin: 5px 0;
+}
+
+.player{
+	text-align: center;
+}
+
+.player h4{
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.playerNum{
+	display: inline-block;
+	height: 31px;
+	width: 30px;
+	background-color: #ffffff;
+	border: 1px solid #5F991B;
+	border-collapse: collapse;
+	color: #5F991B;
+	margin: auto;
+	vertical-align: top；
+}
+
+.playerNum.minus{
+	border-radius: 6px 0 0 6px;
+}
+.playerNum.plus{
+	border-radius: 0 6px 6px 0;
+	border-left: 0px solid; 
+}
+
+.w3-cell img{
+	width: 20px;
+	float: right;
+	margin: auto;
+	display: absolute;
+	top: 26px;
+}
+
+footer .w3-col{
+	width: 33.33%;
+	padding: 0px;
+	border: 1px solid #5F991B;
+}
+
+footer.w3-container{
+	padding: 0.01em 0px;
+}
+
+footer{
+	color: #5F991B;
+	text-align: center;
+	background-color: #ffffff;
+	z-index: 1;
+}
+
+footer .w3-col:link{
+	background-color: #ffffff;
+	color: #5F991B;
+}
+
+footer .w3-col:visited{
+	background-color: #5F991B;
+	color: #ffffff;
+}
+
+footer .w3-col:hover{
+	background-color: #5F991B;
+	color: #ffffff;
+}
+
+footer .selected{
+	background-color: #5F991B;
+	color: #ffffff;
+}
+
+.card{
+	border: 1px solid #979797;
+	border-radius: 10px;
+	display: inline-block;
+	width: 16%;
+	height: 70px;
+	padding: 3px 3px;
+}
+
+.card.disabled{
+	background-color: #EAE8E8;
+}
+
+.cardSet{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    width: 86%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom:30px; 
+}
+
+.link{
+	float: right;
+	color: #5F991B;
+
+}
